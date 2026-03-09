@@ -1,0 +1,44 @@
+CREATE TABLE IF NOT EXISTS dependencies (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(70),
+	created_at TIMESTAMPZ DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMPZ,
+	deleted_at TIMESTAMPZ
+
+);
+
+CREATE TABLE IF NOT EXISTS user (
+	id UUID PRIMARY KEY,
+	name VARCHAR(75),
+	lastname1 VARCHAR(75),
+	lastname2 VARCHAR(75,
+	created_at TIMESTAMPZ DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMPZ,
+	deleted_at TIMESTAMPZ
+);
+
+CREATE TABLE IF NOT EXISTS account (
+	id UUID PRIMARY KEY,
+	user_id UUID NOT NULL,
+	dependency_id INTEGER NOT NULL,
+	email VARCHAR(75) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
+	role_id INTEGER NOT NULL
+	is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+	version INTEGER DEFAULT 1,
+	created_at TIMESTAMPZ DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMPZ DEFAULT,
+	password_change_at TIMESTAMPZ DEFAULT CURRENT_TIMESTAMP,
+	deleted_at TIMESTAMP
+);
+
+
+
+ALTER TABLE account
+ADD CONSTRAINT fk_user
+FOREIGN KEY (user_id) REFERENCES user(id);
+
+ALTER TABLE account
+ADD CONSTRAINT fk_dependency_account
+FOREIGN KEY (dependency_id) REFERENCES dependencies(id);
+CREATE INDEX idx_account_user_id ON account(user_id);
