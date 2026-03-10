@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS user_roles (
 	id UUID PRIMARY KEY,
 	user_id UUID NOT NULL,
 	role_id UUID NOT NULL,
-	branch_scope_id UUID,
+	-- branch_scope_id UUID,
 	created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
 	UNIQUE(user_id, role_id, branch_scope_id)
 );
