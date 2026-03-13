@@ -8,10 +8,8 @@ import (
 type Account struct {
 	ID               types.UID
 	UserID           types.UID
-	DependencyID     int
 	Email            string
 	Password         string
-	RoleID           int
 	IsVerified       bool
 	Version          int
 	Created_at       time.Time

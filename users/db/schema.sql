@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS roles (
 	created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE TABLE IF NOT EXISTS permissions (
+CREATE TABLE IF NOT EXISTS permission (
 	id UUID PRIMARY KEY,
 	code VARCHAR(100) NOT NULL UNIQUE,
 	name VARCHAR(100) NOT NULL,
@@ -89,7 +89,7 @@ FOREIGN KEY (role_id) REFERENCES roles(id);
 
 ALTER TABLE role_permissions
 ADD CONSTRAINT fk_role_permissions_permission
-FOREIGN KEY (permission_id) REFERENCES permissions(id);
+FOREIGN KEY (permission_id) REFERENCES permission(id);
 
 ALTER TABLE user_role_assignments
 ADD CONSTRAINT fk_user_role_assignments_user
